@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sumu 💕</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+min-height:100vh;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffd1ff,#a18cd1);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.page{
+width:100%;
+height:100vh;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:20px;
+text-align:center;
+}
+
+.active{
+display:flex;
+}
+
+.glass{
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:25px;
+box-shadow:0 0 25px rgba(255,105,180,.4);
+}
+
+input{
+padding:12px;
+border:none;
+border-radius:15px;
+outline:none;
+margin-top:10px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#ff4f8b;
+color:#fff;
+margin-top:15px;
+cursor:pointer;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.lock-box{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.snoopy{
+width:140px;
+}
+
+#msg{
+font-size:30px;
+color:white;
+font-weight:bold;
+min-height:50px;
+}
+
+.letter{
+max-width:500px;
+color:white;
+font-size:18px;
+line-height:1.8;
+}
+
+.gallery{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.gallery img{
+width:130px;
+height:170px;
+object-fit:cover;
+border-radius:20px;
+transition:.5s;
+}
+
+.gallery img:hover{
+transform:scale(1.1);
+}
+
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+
+.final{
+color:white;
+font-size:32px;
+font-weight:bold;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+50%{
+transform:scale(1.08);
+}
+}
+
+@media(max-width:768px){
+
+.lock-box{
+flex-direction:row;
+}
+
+.snoopy{
+width:90px;
+}
+
+.gallery img{
+width:100px;
+height:130px;
+}
+
+#msg{
+font-size:24px;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 LOCK -->
+
+<div class="page active" id="page1">
+
+<div class="glass lock-box">
+
+<img src="snoopy.png" class="snoopy">
+
+<div>
+
+<h2>Unlock My Heart 💕</h2>
+
+<input type="password" id="pass" placeholder="Enter Password">
+
+<br>
+
+<button onclick="unlock()">Unlock</button>
+
+<p id="error"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="page2">
+
+<h1 id="msg"></h1>
+
+<div class="glass letter">
+
+My Dearest Sumu 💖<br><br>
+
+Every moment with you feels magical.
+You are the reason behind my smile,
+my happiness and my peace.
+
+No matter what happens,
+I will always choose you.
+
+💕 Forever Yours 💕
+
+</div>
+
+<button onclick="nextPage()">Next ➜</button>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="page3">
+
+<h1 style="color:white;margin-bottom:20px;">
+Our Memories 📸
+</h1>
+
+<div class="gallery">
+
+<img src="pic1.jpg">
+<img src="pic2.jpg">
+<img src="pic3.jpg">
+
+</div>
+
+<button onclick="finalPage()">Final Surprise 🎁</button>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="page4">
+
+<div class="final">
+I Love You Sumu 💕<br><br>
+Forever & Always ❤️
+</div>
+
+</div>
+
+<script>
+
+function unlock(){
+
+let pass=document.getElementById("pass").value;
+
+if(pass==="168"){
+
+document.getElementById("page1").classList.remove("active");
+
+document.getElementById("page2").classList.add("active");
+
+typeWriter();
+
+}else{
+
+document.getElementById("error").innerHTML=
+"❌ Wrong Password";
+}
+}
+
+function nextPage(){
+
+page2.classList.remove("active");
+
+page3.classList.add("active");
+
+}
+
+function finalPage(){
+
+page3.classList.remove("active");
+
+page4.classList.add("active");
+
+}
+
+let text="Welcome Sumu 💖";
+let i=0;
+
+function typeWriter(){
+
+if(i<text.length){
+
+document.getElementById("msg").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,100);
+
+}
+
+}
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+},400);
+
+</script>
+
+</body>
+</html>
